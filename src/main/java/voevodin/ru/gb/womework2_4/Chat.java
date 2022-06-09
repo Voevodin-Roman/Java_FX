@@ -6,34 +6,13 @@ import java.util.Collections;
 import java.util.List;
 
 public class Chat {
-    private final int[] quessNum;
 
-    public String getQuessNum() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < quessNum.length; i++) {
-            stringBuilder.append(quessNum[i]);
-
-        }
-
-        return stringBuilder.toString();
-    }
 
     public Chat() {
-        this.quessNum = generateNumber();
+        int[] quessNum = generateNumber();
         System.out.println(Arrays.toString(quessNum));
     }
-    public  BulsAndCowsCount calculateBullsAndCows(String playerNum){
-        int bulls = 0, cows = 0;
-        for (int i = 0; i < quessNum.length; i++) {
-            if (quessNum[i] == playerNum.charAt(i) - '0'){
-                bulls ++;
-            }else if(playerNum.contains(String.valueOf(quessNum[i]))){
-                cows++;
-            }
 
-        }
-        return new BulsAndCowsCount(bulls, cows);
-    }
     public  static class BulsAndCowsCount{
         private final int bulls;
         private final int cows;

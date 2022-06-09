@@ -10,6 +10,8 @@ import java.util.ResourceBundle;
 
 public class HelloController implements Initializable {
     public ComboBox<String> mySmile;
+    public TextField opponentAnswer;
+    public ComboBox opponentSmile;
     @FXML
     private TextArea historyArea;
     @FXML
@@ -19,39 +21,27 @@ public class HelloController implements Initializable {
         mySmile.getItems().setAll(":-)", "8-))", "$-)", ";-)", ":-*");
     }
 
-    private Chat game;
-    private int step;
-
-    public HelloController() {
-        this.game = new Chat();
-    }
-
-
-
-
 
     public void clickCheckButton(ActionEvent actionEvent) {
         final String answer = myAnswer.getText();
         final String smile = mySmile.getSelectionModel().getSelectedItem();
+        String text;
         if (answer.isBlank()){
             return;
         }
-        Chat.BulsAndCowsCount bulsAndCowsCount = game.calculateBullsAndCows(answer);
-        String text = String.format("Моё сообщение: \n %s,  %s",  answer, smile );
+
+        if (smile == "null"){
+            text = String.format("Моё сообщение: \n %s", answer);
+        }else {
+            text = String.format("Моё сообщение: \n %s,  %s",  answer, smile );
+        }
         historyArea.appendText(text + "\n");
         myAnswer.clear();
         myAnswer.requestFocus();
-        if (bulsAndCowsCount.getBulls() == 4){
-            if (ifWwant()) {
-                clickNewChat();
-            }else {
-                System.exit(0);
-            }
-        }
     }
 
     private boolean ifWwant() {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Dssbuhsi\n" + "Number " + game.getQuessNum() + "add?",
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Вы действительно хотите закрыть программу",
                 new ButtonType("Ok", ButtonBar.ButtonData.YES),
                 new ButtonType("No", ButtonBar.ButtonData.NO));
         alert.setTitle("Уже уходите?");
@@ -62,14 +52,13 @@ public class HelloController implements Initializable {
     }
 
     public void clickNewChat() {
-        step = 0;
         historyArea.clear();
-        this.game = new Chat();
-
     }
 
     public void clickExit() {
-        System.exit(0);
+        if (ifWwant()) {
+            System.exit(0);
+        }
     }
 
 
