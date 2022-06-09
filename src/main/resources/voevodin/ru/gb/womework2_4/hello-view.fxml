@@ -30,7 +30,7 @@
     <HBox spacing="5">
         <TextField fx:id="myAnswer" HBox.hgrow="ALWAYS"/>
         <ComboBox fx:id="mySmile" promptText="Смайлы" prefWidth="100.0" />
-        <Button text="Send" defaultButton="true" onAction="#clickCheckButton"/>
+        <Button text="Send" defaultButton="true" onAction="#myClickCheckButton"/>
 
     </HBox>
 
@@ -38,8 +38,8 @@
 
     <HBox spacing="5">
         <TextField fx:id="opponentAnswer" HBox.hgrow="ALWAYS"/>
-        <ComboBox fx:id="opponentSmile" promptText="Смайлы" prefWidth="100.0" />
-        <Button text="Send" defaultButton="true" onAction="#clickCheckButton"/>
+        <ComboBox fx:id="opponentSmile"  promptText="Смайлы" prefWidth="100.0" />
+        <Button text="Send" defaultButton="true" onAction="#opponentClickCheckButton"/>
 
     </HBox>
 

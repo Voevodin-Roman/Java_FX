@@ -9,9 +9,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class HelloController implements Initializable {
-    public ComboBox<String> mySmile;
-    public TextField opponentAnswer;
-    public ComboBox opponentSmile;
+    @FXML
+    private ComboBox<String> mySmile;
+    @FXML
+    private TextField opponentAnswer;
+    @FXML
+    private ComboBox opponentSmile;
     @FXML
     private TextArea historyArea;
     @FXML
@@ -22,22 +25,38 @@ public class HelloController implements Initializable {
     }
 
 
-    public void clickCheckButton(ActionEvent actionEvent) {
+    public void myClickCheckButton(ActionEvent actionEvent) {
         final String answer = myAnswer.getText();
         final String smile = mySmile.getSelectionModel().getSelectedItem();
-        String text;
         if (answer.isBlank()){
             return;
         }
-
-        if (smile == "null"){
-            text = String.format("Моё сообщение: \n %s", answer);
-        }else {
-            text = String.format("Моё сообщение: \n %s,  %s",  answer, smile );
-        }
-        historyArea.appendText(text + "\n");
+        historyArea.appendText("Моё сообщение\n" + clickMessageOutput(answer, smile) + "\n");
         myAnswer.clear();
         myAnswer.requestFocus();
+
+    }
+
+    public void opponentClickCheckButton(ActionEvent actionEvent) {
+        final String answer = opponentAnswer.getText();
+        final String smile = (String) opponentSmile.getSelectionModel().getSelectedItem();
+        if (answer.isBlank()){
+            return;
+        }
+        historyArea.appendText("Сообщение собеседника\n" + clickMessageOutput(answer, smile) + "\n");
+        opponentAnswer.clear();
+        opponentAnswer.requestFocus();
+
+    }
+
+    private String clickMessageOutput(String answer, String smile){
+        String text;
+        if (smile == null){
+            text = answer;
+        }else {
+            text = answer + "  " + smile;
+        }
+        return text;
     }
 
     private boolean ifWwant() {
