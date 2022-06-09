@@ -14,7 +14,7 @@ public class HelloController implements Initializable {
     @FXML
     private TextField opponentAnswer;
     @FXML
-    private ComboBox opponentSmile;
+    private ComboBox<String> opponentSmile;
     @FXML
     private TextArea historyArea;
     @FXML
@@ -31,7 +31,8 @@ public class HelloController implements Initializable {
         if (answer.isBlank()){
             return;
         }
-        historyArea.appendText("Моё сообщение\n" + clickMessageOutput(answer, smile) + "\n");
+        String message = clickMessageOutput(answer, smile);
+        historyArea.appendText( "Моё сообщение\n" + message + "\n");
         myAnswer.clear();
         myAnswer.requestFocus();
 

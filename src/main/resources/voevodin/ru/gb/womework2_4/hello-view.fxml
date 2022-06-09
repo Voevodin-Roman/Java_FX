@@ -23,7 +23,7 @@
         </Menu>
     </MenuBar>
 
-    <TextArea fx:id="historyArea" nodeOrientation="RIGHT_TO_LEFT" editable="false" wrapText="true" VBox.vgrow="ALWAYS" prefColumnCount="2" />
+    <TextArea fx:id="historyArea"  editable="false" wrapText="true" VBox.vgrow="ALWAYS" prefColumnCount="2" />
 
     <Text text="Я" />
 
